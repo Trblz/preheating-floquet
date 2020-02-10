@@ -1,5 +1,5 @@
-% V_int = -1/2*phi*phi*chi*chi
-
+% V_int = -1/2*phi*chi*chi
+ 
 t0 = 0;
 tf = pi;
 n = 100;
@@ -32,7 +32,7 @@ ylabel('$\frac{g\Phi}{m_\phi}$','Interpreter','latex','FontSize',18');
 
 function O = fmatsolve(t,x,K,G)
 
-f = -(K.^2 + ((G.^2/2).*(1+cos(2.*t))));
+f = -(K.^2 + ((G.^2).*(sin(t))));
 
 O = [x(3) ; x(4) ; f.*x(1) ; f.*x(2)];
 
