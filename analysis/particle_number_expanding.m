@@ -4,7 +4,7 @@ tf = 8*pi;
 n = 1000;
 
 K = 0;
-G = 28.28;
+G = 155;
 % NARROW BAND: K=0.9 G=0.6325
 % BROAD BAND: K=0 G=28.28
 
@@ -17,7 +17,7 @@ xlabel('$t$','Interpreter','latex','FontSize',23);
 ylabel('$\delta\chi_k$','Interpreter','latex','FontSize',23);
 
 a = z.^(2/3);
-w = sqrt(K.^2 + (((G.^2)./2).*(1-cos(2.*z))));
+w = sqrt((K./a).^2 + (((G.^2)./2).*(1-cos(2.*z))));
 np = (w./2).*(((abs(chi(:,2)).^2)./(w.^2)) + (abs(chi(:,1)).^2)) - 0.5;
 
 f2 = figure(2);
@@ -34,6 +34,6 @@ ylabel('$\log(n_k)$','Interpreter','latex','FontSize',23);
 function chi = solvechi(t,x,K,G)
 
 a = t.^(2/3);
-chi = [x(2) ; -(K.^2 + (((G.^2)./2).*(1-cos(2.*t)))).*x(1)];
+chi = [x(2) ; -((K./a).^2 + (((G.^2)./2).*(1-cos(2.*t)))).*x(1)];
 
 end
